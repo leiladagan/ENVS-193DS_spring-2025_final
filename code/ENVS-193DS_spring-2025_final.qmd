@@ -1,5 +1,181 @@
 ---
-title: "ENVS-193DS_spring-2025_final"
-format: html
+title: "ENVS 193DS Final"
+date: 2025-06-011
+author: "Leila Dagan" 
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
 ---
+```{r}
+#| message: false
+library(tidyverse)
+library(here)
+library(flextable)
+library(janitor)
+library(dplyr)
+my_data <- read_csv(here("data", "my_data.csv"))
+```
+
+## Problem 1. Research writing (36 points)
+
+#### a. Transparent statistical methods (8 points)
+
+What statistical tests did your co-worker use? Clearly connect the test to the part that you are addressing (e.g. "In part 1, they used _______. In part 2, they used _______.").
+
+#### b. More information needed (8 points)
+
+The test in part 2 seems familiar to you, but you think there's more that your co-worker needs to do to provide more context for the results. List 2 additional tests and/or pieces of information that should be included, and explain why those tests and/or pieces of information would add useful additional context.  
+
+Be specific and use variables and/or statistics from the example.
+
+#### c. Suggestions for rewriting (20 points)
+
+In 1-3 sentences, _write new research statements_ to include relevant components from parts a-b and a full test summary in parentheses to be transparent about the statistical method.  
+
+Be sure that your rewritten statements clearly delineate the _biological narrative_ from the _statistical summary_. See lecture and workshop for examples of writing.  
+
+Note that your co-worker didn't include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: "... **r = correlation coefficient**, p = 0.03, **$\alpha$ = significance level** ..."
+
+:::{.callout-note title="Real work on nitrogen deposition in the San Joaquin River Delta" collapse="true"}
+
+This problem is inspired by a publication outlining the very real consequences for river ecosystems from nitrogen and phosphorus addition to the San Joaquin and Sacramento rivers:   
+
+Saleh, Dina and Joseph Domagalski. 2021. "Concentrations, Loads, and Associated Trends of Nutrients Entering the Sacramento–San Joaquin Delta, California." _San Francisco Estuary and Watershed Science._ DOI: [10.15447/sfews.2021v19iss4art6](https://doi.org/10.15447/sfews.2021v19iss4art6).
+
+## Problem 2. Data visualization (36 points)
+
+#### a. Cleaning and summarizing (16 points)
+
+Create an object called `sst_clean` from `sst`. Clean and summarize the data such that you end up with a data frame like this:  
+
+![](/assignments/images/final/slice-sample-example.png)
+
+with a structure like this:  
+
+![](/assignments/images/final/str-example.png)
+
+Use the pipe operator (`|>` or `%>%`) to string functions together. After every pipe, start a new line to use the next function. Include annotations for each function you use.  
+
+When you are done with all your cleaning steps, display 5 rows from `sst_clean` using `slice_sample()` and the structure using `str()`.
+
+Show all code.
+
+:::{.callout-tip title="Consider using the `lubridate` package." collapse="true"}
+
+You may find it useful to use functions from the `lubridate` package (pre-loaded in `tidyverse`, so you don't have to install/read it in separately).  
+
+Not sure where to start? Google the package and read about it.
+
+:::
+
+:::{.callout-tip title="Double check your code!" collapse="true"}
+
+When writing your cleaning and summarizing code, run your code after adding each function. Does your data frame look the way you'd expect?  
+
+Additionally, **pay attention to the components in the figure.** What has to be true about your data frame in order for you to recreate this figure? (Hint: think about what years are displayed in the figure, and contrast that with the years in the data set.)
+
+:::
+
+#### b. Visualize the data (20 points)
+
+Recreate this visualization:
+
+![](/assignments/images/final/SST.jpeg)
+
+In addition to displaying the correct subset of the data, the specific aesthetic components you need to recreate are:  
+
+- the geometries (there are two)
+- the x-, y-axis, and legend text and labels
+- a color gradient in a single color (doesn't have to be blue, can be any other color) going from light --> dark for 2018 --> 2023
+- the legend position inside the panel
+- the panel border and background
+
+## Problem 3. Data analysis (87 points)
+
+#### a. Response variable (2 points)  
+
+In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.
+
+#### b. Purpose of study (2 points)
+
+The authors compare nest box occupancy between 3 species: Swift Parrots, Common Starlings, and Tree Martins. In 1-2 sentences, explain the main difference between Swift Parrots and the other two species in the context of this study.
+
+#### c. Difference in "seasons" (2 points)
+
+The authors compare two years (that they refer to as "seasons"). In 1-2 sentences, define what those years/seasons are, and explain how they differ in the context of this study.
+
+#### d. Table of models (10 points)
+
+Make a table of all the models you will need to run. You will run 4 models: a null model, a saturated model, and two other models with different combinations of predictors.  
+
+Stuck on how to create a table? See workshop 8 for an example.  
+
+Your table should have 4 columns: (1) model number, (2) season, (3) distance to forest edge, and (4) model description.
+
+#### e. Run the models (8 points)
+
+Write your code to run all your models. Do not display any output.
+
+#### f. Check the diagnostics (6 points)
+
+Check your diagnostics for all models using simulated residuals from the `DHARMa` package.  
+
+Display the diagnostic plots for each model.
+
+#### g. Select the best model (6 points) 
+
+Using Akaike's Information Criterion (AIC) from the `MuMIn` package, choose the best model.  
+
+In text, write what the best model was (i.e. "The best model as determined by Akaike's Information Criterion (AIC)...").  
+
+**Use the predictors and the response variable to describe the model**, not the model number that you assigned.
+
+#### h. Visualize the model predictions (24 points)
+
+Create a plot showing model predictions with 95% confidence intervals and the underlying data.  
+
+Show and annotate all code. Show the output.   
+
+For full credit:
+
+- make sure the x- and y-axis labels are written in full
+- take out the gridlines
+- use colors that are different from the default
+
+#### i. Write a caption for your figure. (7 points)
+
+Include a figure number, title, description of the figure, and data citation.
+
+#### j. Calculate model predictions (4 points)
+
+Calculate the predicted probabilities of Swift Parrot nest box occupancy with 95% at 0 m from forest edge and 900 m from forest edge for each level in `season`.  
+
+Show and annotate all code. Display the output.
+
+#### k. Interpret your results (16 points)
+
+Write 3-5 sentences summarizing what you found, making references to the figure you made in part h and the predictions you calculated in part j. Your summary should include your interpretation of:  
+
+- the predicted probability of occupancy at the forest edge (0 m) and farther away from the forest edge (900 m) between seasons
+- the relationship between distance from forest edge and probability of occupancy
+- the biology behind the trends you found - what explains the relationship between distance from forest edge and probability of Swift Parrot nest box occupancy?
+
+## Problem 4. Affective and exploratory visualizations (45 points)
+
+#### a. Comparing visualizations (20 points)
+
+Compare and contrast your affective visualization from Homework 3 and the exploratory visualizations you made for Homework 2. In 1-3 sentences each, explain:  
+
+- How are the visualizations different from each other in the way you have represented your data?
+- What similarities do you see between all your visualizations?
+- What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+- What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
+
+#### b. Sharing your affective visualization (25 points)
+
+This is a component you will complete in workshop during week 10. **We will be taking attendance that day. If you attend class and complete the activity, you will receive full credit for this section.** 
+
 
