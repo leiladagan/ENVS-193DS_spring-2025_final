@@ -208,7 +208,31 @@ theme_minimal() + # minimizing theme
 ```
 
 ```{r}
-var.test()
+my_data_clean <- my_data |> # starting with my personal data frame 
+  clean_names() # simplifying my column names 
+  my_data_clean
+```
+
+```{r}
+var.test(shower_length_min ~ work_day, # formula 
+         data = my_data_clean) # data frame 
+```
+appears my samples have equal variances, can run student's t test. 
+```{r}
+t.test(shower_length_min ~ work_day,
+         data = my_data_clean, 
+       var.equal = TRUE)
+```
+I did not find a significant difference in the mean shower length time between work days and non work days using a Student's t-test t(31) =
+-0.63, p = 0.53, ⍺ = 0.05). So, I feel comfortable adding the histogram once again to my final visualization. 
+```{r}
+ggplot(data = my_data_clean, aes(x = shower_length_min)) + #setting parameters 
+  geom_histogram(fill = "turquoise", # making my histogram 
+                 bins = 6) + # log2(31) + 1 = 5.96, rounded up to 6 bins 
+  theme_minimal() + # minimizing theme 
+  labs(x = "Shower length in minutes", # including x axis title 
+       y = " ") +  # making y axis title blank 
+ theme(panel.grid = element_blank()) # removing gridlines 
 ```
 
 
