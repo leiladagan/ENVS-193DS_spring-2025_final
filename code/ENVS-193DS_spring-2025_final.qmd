@@ -235,6 +235,8 @@ ggplot(data = my_data_clean, aes(x = shower_length_min)) + #setting parameters
  theme(panel.grid = element_blank()) # removing gridlines 
 ```
 
+![](shower_viz.jpg)
+
 
 This is a component you will complete in workshop during week 10. **We will be taking attendance that day. If you attend class and complete the activity, you will receive full credit for this section.** 
 
