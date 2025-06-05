@@ -1,6 +1,6 @@
 ---
 title: "ENVS 193DS Final"
-date: 2025-06-011
+date: 2025-06-11
 author: "Leila Dagan" 
 format:
   html:
@@ -25,9 +25,17 @@ my_data <- read_csv(here("data", "my_data.csv"))
 
 What statistical tests did your co-worker use? Clearly connect the test to the part that you are addressing (e.g. "In part 1, they used _______. In part 2, they used _______.").
 
+In part 1, they used simple linear regression to determine if there was a correlation between distance from headwater (km) and annual total nitrogen load (kg/year). 
+
+In part 2, the authors used analysis of variance (ANOVA) to compare the average nitrogen load (kg/year) in different sources such as urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands. 
+
 #### b. More information needed (8 points)
 
 The test in part 2 seems familiar to you, but you think there's more that your co-worker needs to do to provide more context for the results. List 2 additional tests and/or pieces of information that should be included, and explain why those tests and/or pieces of information would add useful additional context.  
+
+They should have included the F-statistic, which would tell us if the variance among groups is large compared to the variance within groups. The higher the F-statistic is, the more likely that the actual mean nitrogen load (kg/year) between sources is different. 
+
+They also should have run a Tukey HSD test, which would provide more information on which of the sources have different mean nitrogen load (kg/year) when compared. 
 
 Be specific and use variables and/or statistics from the example.
 
@@ -165,7 +173,7 @@ Compare and contrast your affective visualization from Homework 3 and the explor
 
 - How are the visualizations different from each other in the way you have represented your data?
 
-The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram. 
+The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length. 
 
 - What similarities do you see between all your visualizations?
 
