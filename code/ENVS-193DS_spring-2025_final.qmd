@@ -39,12 +39,6 @@ Be sure that your rewritten statements clearly delineate the _biological narrati
 
 Note that your co-worker didn't include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: "... **r = correlation coefficient**, p = 0.03, **$\alpha$ = significance level** ..."
 
-:::{.callout-note title="Real work on nitrogen deposition in the San Joaquin River Delta" collapse="true"}
-
-This problem is inspired by a publication outlining the very real consequences for river ecosystems from nitrogen and phosphorus addition to the San Joaquin and Sacramento rivers:   
-
-Saleh, Dina and Joseph Domagalski. 2021. "Concentrations, Loads, and Associated Trends of Nutrients Entering the Sacramento–San Joaquin Delta, California." _San Francisco Estuary and Watershed Science._ DOI: [10.15447/sfews.2021v19iss4art6](https://doi.org/10.15447/sfews.2021v19iss4art6).
-
 ## Problem 2. Data visualization (36 points)
 
 #### a. Cleaning and summarizing (16 points)
@@ -234,6 +228,8 @@ ggplot(data = my_data_clean, aes(x = shower_length_min)) + #setting parameters
        y = " ") +  # making y axis title blank 
  theme(panel.grid = element_blank()) # removing gridlines 
 ```
+
+Here is my final visualization! 
 
 ![](shower_viz.jpg)
 
