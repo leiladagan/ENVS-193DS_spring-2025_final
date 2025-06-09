@@ -86,7 +86,32 @@ In addition to displaying the correct subset of the data, the specific aesthetic
 - the x-, y-axis, and legend text and labels
 - a color gradient in a single color (doesn't have to be blue, can be any other color) going from light --> dark for 2018 --> 2023
 - the legend position inside the panel
-- the panel border and background
+```{r}
+ggplot(subset(sst_clean, year %in% c("2018", "2019", "2020", "2021", "2022", "2023")), # starting with sst_clean data, only 2018-2023
+                   aes(x = month, # x axis
+                       y = mean_monthly_sst, # y axis 
+                       group = year, # grouping points by year
+                       colour = year)) + # coloring by year 
+  geom_point() + #scatterplot geometries 
+  geom_line() + # line connecting dots 
+  labs(x = "Month", # x axis title 
+       y = "Mean monthy sea surface temperature (\u00B0C)", # y axis title with degree symbol 
+       color = "Year") + # legend title 
+  theme_minimal() + # minimizing theme 
+  theme(panel.grid = element_line(color = "white"), # disappearing gridlines
+        panel.border = element_rect(fill = NA, # border doesn't fill on top of points 
+                                    color = "black"), # border color is black
+        legend.position = "inside", # putting legend inside plot
+        legend.position.inside = c(0.1,0.75)) + #legend in top left 
+  scale_color_manual(values = c( # creating a gradient of greens 
+  "2018" = "#c7e9c0", # light green 
+  "2019" = "#a1d99b",
+  "2020" = "#74c476",
+  "2021" = "#41ab5d",
+  "2022" = "#238b45",
+  "2023" = "#005a32")) # dark green 
+```
+
 
 ## Problem 3. Data analysis (87 points)
 
