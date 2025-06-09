@@ -158,30 +158,32 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"SST_update2023.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"SST_update2023.csv"</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"occdist.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-1.-research-writing-36-points" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1.-research-writing-36-points">Problem 1. Research writing (36 points)</h2>
 <section id="a.-transparent-statistical-methods-8-points" class="level4">
 <h4 class="anchored" data-anchor-id="a.-transparent-statistical-methods-8-points">a. Transparent statistical methods (8 points)</h4>
 <p>What statistical tests did your co-worker use? Clearly connect the test to the part that you are addressing (e.g.&nbsp;“In part 1, they used _______. In part 2, they used _______.”).</p>
-<p>In part 1, they used Pearson’s r to determine if there was a correlation between distance from headwater (km) and annual total nitrogen load (kg/year).</p>
-<p>In part 2, the authors used analysis of variance (ANOVA) to compare the average nitrogen load (kg/year) in different sources such as urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands.</p>
+<p><strong>In part 1, they used Pearson’s r to determine if there was a correlation between distance from headwater (km) and annual total nitrogen load (kg/year).</strong></p>
+<p><strong>In part 2, the authors used analysis of variance (ANOVA) to compare the average nitrogen load (kg/year) in different sources such as urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands.</strong></p>
 </section>
 <section id="b.-more-information-needed-8-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-more-information-needed-8-points">b. More information needed (8 points)</h4>
 <p>The test in part 2 seems familiar to you, but you think there’s more that your co-worker needs to do to provide more context for the results. List 2 additional tests and/or pieces of information that should be included, and explain why those tests and/or pieces of information would add useful additional context.</p>
-<p>They should have included the F-statistic, which would tell us if the variance among groups is large compared to the variance within groups. The higher the F-statistic is, the more likely that the actual mean nitrogen load (kg/year) between sources is different.</p>
-<p>They also should have run a Tukey HSD test, which would provide more information on which of the sources have different mean nitrogen load (kg/year) when compared.</p>
+<p><strong>They should have included the F-statistic, which would tell us if the variance among groups is large compared to the variance within groups. The higher the F-statistic is, the more likely that the actual mean nitrogen load (kg/year) between sources is different.</strong></p>
+<p><strong>They also should have run a Tukey HSD test, which would provide more information on which of the sources have different mean nitrogen load (kg/year) when compared.</strong></p>
 </section>
 <section id="c.-suggestions-for-rewriting-20-points" class="level4">
 <h4 class="anchored" data-anchor-id="c.-suggestions-for-rewriting-20-points">c.&nbsp;Suggestions for rewriting (20 points)</h4>
 <p>In 1-3 sentences, <em>write new research statements</em> to include relevant components from parts a-b and a full test summary in parentheses to be transparent about the statistical method.</p>
 <p>Be sure that your rewritten statements clearly delineate the <em>biological narrative</em> from the <em>statistical summary</em>. See lecture and workshop for examples of writing.</p>
-<p>Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… <strong>r = correlation coefficient</strong>, p = 0.03, <strong><span class="math inline">\(\alpha\)</span> = significance level</strong> …”</p>
-<p>There is a (strong/weak positive/negative) relationship between the distance from the headwater (km) and annual nitrogen load (kg/year) (Pearson’s r = correlation coefficient, p=0.03, <span class="math inline">\(\alpha\)</span> = significance level)</p>
-<p>We found a (small, medium, or large) difference (<span class="math inline">\(\eta\)</span><sup>2</sup> = cohen’s d effect size) between sources of nitrogen in mean annual nitrogen load (kg/year) (One-way ANOVA, F(6, degrees of freedom of observations) = F statistic, p=0.02, <span class="math inline">\(\alpha\)</span> = significance level) On average, (source) tended to have the highest average annual nitrogen load (kg/year).</p>
+<p>Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… <em>r = correlation coefficient</em>, p = 0.03, <em><span class="math inline">\(\alpha\)</span> = significance level</em> …”</p>
+<p><strong>There is a (strong/weak positive/negative) relationship between the distance from the headwater (km) and annual nitrogen load (kg/year) (Pearson’s r = correlation coefficient, p=0.03, <span class="math inline">\(\alpha\)</span> = significance level)</strong></p>
+<p><strong>We found a (small, medium, or large) difference (<span class="math inline">\(\eta\)</span><sup>2</sup> = cohen’s d effect size) between sources of nitrogen in mean annual nitrogen load (kg/year) (One-way ANOVA, F(6, degrees of freedom of observations) = F statistic, p=0.02, <span class="math inline">\(\alpha\)</span> = significance level) On average, (source) tended to have the highest average annual nitrogen load (kg/year).</strong></p>
 </section>
 </section>
 <section id="problem-2.-data-visualization-36-points" class="level2">
@@ -207,11 +209,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 2000  Feb               13.6
-2 2006  Jan               13.1
-3 1987  Mar               13.5
-4 2012  Jun               15.3
-5 1987  Aug               17.3</code></pre>
+1 1985  Feb               13.2
+2 1989  Apr               13.9
+3 2006  Nov               16.2
+4 2005  Jul               15.5
+5 2020  Apr               14.3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sst_clean) <span class="co">#showing structure of the code </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -270,6 +272,7 @@ window.Quarto = {
 <section id="a.-response-variable-2-points" class="level4">
 <h4 class="anchored" data-anchor-id="a.-response-variable-2-points">a. Response variable (2 points)</h4>
 <p>In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.</p>
+<p><strong>The 1s and 0s represent the different species of birds that could occupy the nest box (ex. a swift parrot gets a 1 in “sp” and 0’s in “cs”, “e”, and “tm), and a 1 in the”e” column represents an unoccupied nest box (cs = common starling, and tm = tree martin.) </strong></p>
 </section>
 <section id="b.-purpose-of-study-2-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-purpose-of-study-2-points">b. Purpose of study (2 points)</h4>
