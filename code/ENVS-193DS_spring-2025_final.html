@@ -156,76 +156,74 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"SST_update2023.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-1.-research-writing-36-points" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1.-research-writing-36-points">Problem 1. Research writing (36 points)</h2>
 <section id="a.-transparent-statistical-methods-8-points" class="level4">
 <h4 class="anchored" data-anchor-id="a.-transparent-statistical-methods-8-points">a. Transparent statistical methods (8 points)</h4>
 <p>What statistical tests did your co-worker use? Clearly connect the test to the part that you are addressing (e.g.&nbsp;“In part 1, they used _______. In part 2, they used _______.”).</p>
+<p>In part 1, they used Pearson’s r to determine if there was a correlation between distance from headwater (km) and annual total nitrogen load (kg/year).</p>
+<p>In part 2, the authors used analysis of variance (ANOVA) to compare the average nitrogen load (kg/year) in different sources such as urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands.</p>
 </section>
 <section id="b.-more-information-needed-8-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-more-information-needed-8-points">b. More information needed (8 points)</h4>
 <p>The test in part 2 seems familiar to you, but you think there’s more that your co-worker needs to do to provide more context for the results. List 2 additional tests and/or pieces of information that should be included, and explain why those tests and/or pieces of information would add useful additional context.</p>
-<p>Be specific and use variables and/or statistics from the example.</p>
+<p>They should have included the F-statistic, which would tell us if the variance among groups is large compared to the variance within groups. The higher the F-statistic is, the more likely that the actual mean nitrogen load (kg/year) between sources is different.</p>
+<p>They also should have run a Tukey HSD test, which would provide more information on which of the sources have different mean nitrogen load (kg/year) when compared.</p>
 </section>
 <section id="c.-suggestions-for-rewriting-20-points" class="level4">
 <h4 class="anchored" data-anchor-id="c.-suggestions-for-rewriting-20-points">c.&nbsp;Suggestions for rewriting (20 points)</h4>
 <p>In 1-3 sentences, <em>write new research statements</em> to include relevant components from parts a-b and a full test summary in parentheses to be transparent about the statistical method.</p>
 <p>Be sure that your rewritten statements clearly delineate the <em>biological narrative</em> from the <em>statistical summary</em>. See lecture and workshop for examples of writing.</p>
 <p>Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… <strong>r = correlation coefficient</strong>, p = 0.03, <strong><span class="math inline">\(\alpha\)</span> = significance level</strong> …”</p>
+<p>There is a (strong/weak positive/negative) relationship between the distance from the headwater (km) and annual nitrogen load (kg/year) (Pearson’s r = correlation coefficient, p=0.03, <span class="math inline">\(\alpha\)</span> = significance level)</p>
+<p>We found a (small, medium, or large) difference (<span class="math inline">\(\eta\)</span><sup>2</sup> = cohen’s d effect size) between sources of nitrogen in mean annual nitrogen load (kg/year) (One-way ANOVA, F(6, degrees of freedom of observations) = F statistic, p=0.02, <span class="math inline">\(\alpha\)</span> = significance level) On average, (source) tended to have the highest average annual nitrogen load (kg/year).</p>
 </section>
 </section>
 <section id="problem-2.-data-visualization-36-points" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2.-data-visualization-36-points">Problem 2. Data visualization (36 points)</h2>
 <section id="a.-cleaning-and-summarizing-16-points" class="level4">
 <h4 class="anchored" data-anchor-id="a.-cleaning-and-summarizing-16-points">a. Cleaning and summarizing (16 points)</h4>
-<p>Create an object called <code>sst_clean</code> from <code>sst</code>. Clean and summarize the data such that you end up with a data frame like this:</p>
-<p><img src="./assignments/images/final/slice-sample-example.png" class="img-fluid"></p>
-<p>with a structure like this:</p>
-<p><img src="./assignments/images/final/str-example.png" class="img-fluid"></p>
+<p>Create an object called <code>sst_clean</code> from <code>sst</code>. Clean and summarize the data.</p>
 <p>Use the pipe operator (<code>|&gt;</code> or <code>%&gt;%</code>) to string functions together. After every pipe, start a new line to use the next function. Include annotations for each function you use.</p>
 <p>When you are done with all your cleaning steps, display 5 rows from <code>sst_clean</code> using <code>slice_sample()</code> and the structure using <code>str()</code>.</p>
-<p>Show all code.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Consider using the `lubridate` package.">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sst_clean <span class="ot">&lt;-</span> sst <span class="sc">|&gt;</span> <span class="co"># creating object sst_clean from sst </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> <span class="co"># simplifying column names</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">as.Date</span>(date), <span class="co">#changing to date so year and month can be extracted </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">year</span>(date), <span class="co"># extracting the year from the date </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>)  <span class="co"># extracting months from the data column, and labeling them with first 3 letters 'Jan', 'Feb', etc.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month) <span class="sc">|&gt;</span> <span class="co"># finding months within the year</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_monthly_sst =</span> <span class="fu">mean</span>(temp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> <span class="co"># calculating the mean monthly sst </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as_factor</span>(year)) <span class="co">#making the year a factor</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(sst_clean, <span class="at">n=</span> <span class="dv">5</span>) <span class="co">#displaying 5 rows </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  year  month mean_monthly_sst
+  &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
+1 1986  Mar               14.2
+2 2010  Jan               14.4
+3 1991  Sep               16.8
+4 2019  Sep               18.8
+5 2012  Oct               18.3</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Consider using the <code>lubridate</code> package.
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You may find it useful to use functions from the <code>lubridate</code> package (pre-loaded in <code>tidyverse</code>, so you don’t have to install/read it in separately).</p>
-<p>Not sure where to start? Google the package and read about it.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Double check your code!">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Double check your code!
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>When writing your cleaning and summarizing code, run your code after adding each function. Does your data frame look the way you’d expect?</p>
-<p>Additionally, <strong>pay attention to the components in the figure.</strong> What has to be true about your data frame in order for you to recreate this figure? (Hint: think about what years are displayed in the figure, and contrast that with the years in the data set.)</p>
-</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sst_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [504 × 3] (S3: tbl_df/tbl/data.frame)
+ $ year            : Factor w/ 42 levels "1982","1983",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ month           : Ord.factor w/ 12 levels "Jan"&lt;"Feb"&lt;"Mar"&lt;..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ mean_monthly_sst: num [1:504] 13.1 13.5 13.3 12.9 14.4 ...</code></pre>
 </div>
 </div>
 </section>
 <section id="b.-visualize-the-data-20-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-visualize-the-data-20-points">b. Visualize the data (20 points)</h4>
-<p>Recreate this visualization:</p>
-<p><img src="./assignments/images/final/SST.jpeg" class="img-fluid"></p>
 <p>In addition to displaying the correct subset of the data, the specific aesthetic components you need to recreate are:</p>
 <ul>
 <li>the geometries (there are two)</li>
@@ -309,7 +307,7 @@ Double check your code!
 <ul>
 <li>How are the visualizations different from each other in the way you have represented your data?</li>
 </ul>
-<p>The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram.</p>
+<p>The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length.</p>
 <ul>
 <li>What similarities do you see between all your visualizations?</li>
 </ul>
@@ -326,36 +324,36 @@ Double check your code!
 <section id="b.-sharing-your-affective-visualization-25-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-sharing-your-affective-visualization-25-points">b. Sharing your affective visualization (25 points)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">y=</span> <span class="st">`</span><span class="at">shower length (min)</span><span class="st">`</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>)) <span class="sc">+</span> <span class="co"># outlining my plot, data, and variables</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>), <span class="co"># jittering poitns </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">fun =</span> mean, <span class="co"># show mean</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">geom =</span> <span class="st">"point"</span>, <span class="co"># add point</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">size =</span> <span class="dv">2</span>,<span class="co"># change size of point</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"darkblue"</span> <span class="co"># make the color black</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Work Day (yes or no)"</span>, <span class="co"># labels</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"shower length (min)"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Shower Length by Work Day/Non Work Day"</span>) <span class="sc">+</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making points look like water droplets </span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"N"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>, <span class="st">"Y"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>)) <span class="sc">+</span> </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co">#  removing panel grids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">y=</span> <span class="st">`</span><span class="at">shower length (min)</span><span class="st">`</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>)) <span class="sc">+</span> <span class="co"># outlining my plot, data, and variables</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>), <span class="co"># jittering poitns </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">fun =</span> mean, <span class="co"># show mean</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">geom =</span> <span class="st">"point"</span>, <span class="co"># add point</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">size =</span> <span class="dv">2</span>,<span class="co"># change size of point</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"darkblue"</span> <span class="co"># make the color black</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Work Day (yes or no)"</span>, <span class="co"># labels</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"shower length (min)"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Shower Length by Work Day/Non Work Day"</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making points look like water droplets </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"N"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>, <span class="st">"Y"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>)) <span class="sc">+</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co">#  removing panel grids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> <span class="co"># starting with my personal data frame </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co"># simplifying my column names </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  my_data_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> <span class="co"># starting with my personal data frame </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co"># simplifying my column names </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  my_data_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 7
    date    shower_length_min work_day weather_degrees_f work_type gym_y_n time  
@@ -374,8 +372,8 @@ Double check your code!
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(shower_length_min <span class="sc">~</span> work_day, <span class="co"># formula </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean) <span class="co"># data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(shower_length_min <span class="sc">~</span> work_day, <span class="co"># formula </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean) <span class="co"># data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -392,9 +390,9 @@ ratio of variances
 </div>
 <p>appears my samples have equal variances, can run student’s t test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(shower_length_min <span class="sc">~</span> work_day,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(shower_length_min <span class="sc">~</span> work_day,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -411,21 +409,22 @@ mean in group N mean in group Y
 </div>
 <p>I did not find a significant difference in the mean shower length time between work days and non work days using a Student’s t-test t(31) = -0.63, p = 0.53, ⍺ = 0.05). So, I feel comfortable adding the histogram once again to my final visualization.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> shower_length_min)) <span class="sc">+</span> <span class="co">#setting parameters </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"turquoise"</span>, <span class="co"># making my histogram </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co"># log2(31) + 1 = 5.96, rounded up to 6 bins </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shower length in minutes"</span>, <span class="co"># including x axis title </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span>  <span class="co"># making y axis title blank </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># removing gridlines </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> shower_length_min)) <span class="sc">+</span> <span class="co">#setting parameters </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"turquoise"</span>, <span class="co"># making my histogram </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co"># log2(31) + 1 = 5.96, rounded up to 6 bins </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shower length in minutes"</span>, <span class="co"># including x axis title </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span>  <span class="co"># making y axis title blank </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># removing gridlines </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Here is my final visualization!</p>
 <p><img src="shower_viz.jpg" class="img-fluid"></p>
 <p>This is a component you will complete in workshop during week 10. <strong>We will be taking attendance that day. If you attend class and complete the activity, you will receive full credit for this section.</strong></p>
 </section>

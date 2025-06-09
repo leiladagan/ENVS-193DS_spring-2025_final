@@ -17,7 +17,9 @@ library(flextable)
 library(janitor)
 library(dplyr)
 library(MuMIn)
+library(lubridate)
 my_data <- read_csv(here("data", "my_data.csv"))
+sst <- read_csv(here("data", "SST_update2023.csv"))
 ```
 
 ## Problem 1. Research writing (36 points)
@@ -55,41 +57,28 @@ We found a (small, medium, or large) difference ($\eta$^2^ = cohen's d effect si
 
 #### a. Cleaning and summarizing (16 points)
 
-Create an object called `sst_clean` from `sst`. Clean and summarize the data such that you end up with a data frame like this:  
-
-![](/assignments/images/final/slice-sample-example.png)
-
-with a structure like this:  
-
-![](/assignments/images/final/str-example.png)
+Create an object called `sst_clean` from `sst`. Clean and summarize the data.
 
 Use the pipe operator (`|>` or `%>%`) to string functions together. After every pipe, start a new line to use the next function. Include annotations for each function you use.  
 
 When you are done with all your cleaning steps, display 5 rows from `sst_clean` using `slice_sample()` and the structure using `str()`.
+```{r}
+sst_clean <- sst |> # creating object sst_clean from sst 
+  clean_names() |> # simplifying column names
+mutate(
+    date = as.Date(date), #changing to date so year and month can be extracted 
+    year = year(date), # extracting the year from the date 
+    month = month(date, label = TRUE, abbr = TRUE)  # extracting months from the data column, and labeling them with first 3 letters 'Jan', 'Feb', etc.
+  ) |> 
+  group_by(year, month) |> # finding months within the year
+  summarize(mean_monthly_sst = mean(temp, na.rm = TRUE), .groups = "drop") |> # calculating the mean monthly sst 
+  mutate(year = as_factor(year)) #making the year a factor
+slice_sample(sst_clean, n= 5) #displaying 5 rows 
+str(sst_clean) #showing structure of the code 
+```
 
-Show all code.
-
-:::{.callout-tip title="Consider using the `lubridate` package." collapse="true"}
-
-You may find it useful to use functions from the `lubridate` package (pre-loaded in `tidyverse`, so you don't have to install/read it in separately).  
-
-Not sure where to start? Google the package and read about it.
-
-:::
-
-:::{.callout-tip title="Double check your code!" collapse="true"}
-
-When writing your cleaning and summarizing code, run your code after adding each function. Does your data frame look the way you'd expect?  
-
-Additionally, **pay attention to the components in the figure.** What has to be true about your data frame in order for you to recreate this figure? (Hint: think about what years are displayed in the figure, and contrast that with the years in the data set.)
-
-:::
 
 #### b. Visualize the data (20 points)
-
-Recreate this visualization:
-
-![](/assignments/images/final/SST.jpeg)
 
 In addition to displaying the correct subset of the data, the specific aesthetic components you need to recreate are:  
 
