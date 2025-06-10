@@ -277,24 +277,16 @@ Show and annotate all code. Display the output.
 ```{r}
 # Generate predictions across edge_distance and season
 mod_preds <- ggpredict(model1,
-                            terms = c("edge_distance [0:1072 by=1]", "season")) |> 
+                            terms = c("edge_distance [0:900 by=1]", "season")) |> 
   rename(edge_distance = x,
          season = group)
 
-# Filter for edge_distance == 500 and season == 2016
-pred_2016_500 <- mod_preds |> 
-  filter(edge_distance == 500, season == "2016")
-# filter for edge_distane == 500 and season == 2019
-pred_2019_500 <- mod_preds |> 
-  filter(edge_distance == 500, season == "2019")
-kable(pred_2016_500, caption = "Predicted Probability for swift parrot nest box occupancy in 2016 at 500m")
-kable(pred_2019_500, caption = "Predicted Probability swift parrot nest box occupancy in 2019 at 500m")
-```
+# Filter for edge_distance == 900 and season == 2016
+mod_pred_table <- mod_preds |> 
+  filter(edge_distance %in% c(0,900), season %in% c("2016","2019")) # just looking at 
 
-```{r}
-summary(model1)
-str(model1)
-names(mod_preds)
+kable(mod_pred_table, caption = "Predicted Probability for swift parrot nest box occupancy in 2016 at 900m") # displaying output 
+
 ```
 
 #### k. Interpret your results (16 points)
