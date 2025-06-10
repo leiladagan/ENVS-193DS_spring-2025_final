@@ -144,13 +144,20 @@ Stuck on how to create a table? See workshop 8 for an example.
 Your table should have 4 columns: (1) model number, (2) season, (3) distance to forest edge, and (4) model description.
 
 | Model number | season | distance to forest edge | model description | 
-|:------------:|:---:|:---------------:|:-------:|
+|:------------:|:---:|:-------------:|:-------------:|
 | 0            |     |                 |null model (no predictors)        | 
 | 1            |  X  |       X         | saturated model (all predictors) |
 | 2            |  X  |                 | year predicts Swift Parrot nest box occupancy|
 | 3            |     |       X         |distance to forest edge predicts swift parrot nest box occupancy|
 
 #### e. Run the models (8 points)
+
+```{r}
+#| include: FALSE
+nest_boxes_clean <- subset(nest_boxes, sp == 1) |> 
+  clean_names() 
+view(nest_boxes_clean)
+```
 
 Write your code to run all your models. Do not display any output.
 
