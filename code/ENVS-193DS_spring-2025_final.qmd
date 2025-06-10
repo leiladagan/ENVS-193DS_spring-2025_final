@@ -127,9 +127,13 @@ In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.
 
 The authors compare nest box occupancy between 3 species: Swift Parrots, Common Starlings, and Tree Martins. In 1-2 sentences, explain the main difference between Swift Parrots and the other two species in the context of this study.
 
+**The Swift Parrots are selective about where they nest, and who the nest boxes are intended for. The common starlings and tree matrins are the competition for the nest boxes. **
+
 #### c. Difference in "seasons" (2 points)
 
 The authors compare two years (that they refer to as "seasons"). In 1-2 sentences, define what those years/seasons are, and explain how they differ in the context of this study.
+
+**The nest boxes were monitored during the summer breeding seasons of the swift parrots in 2016 and 2019.**
 
 #### d. Table of models (10 points)
 
@@ -138,6 +142,13 @@ Make a table of all the models you will need to run. You will run 4 models: a nu
 Stuck on how to create a table? See workshop 8 for an example.  
 
 Your table should have 4 columns: (1) model number, (2) season, (3) distance to forest edge, and (4) model description.
+
+| Model number | season | distance to forest edge | model description | 
+|:------------:|:---:|:---------------:|:-------:|
+| 0            |     |                 |null model (no predictors)        | 
+| 1            |  X  |       X         | saturated model (all predictors) |
+| 2            |  X  |                 | year predicts Swift Parrot nest box occupancy|
+| 3            |     |       X         |distance to forest edge predicts swift parrot nest box occupancy|
 
 #### e. Run the models (8 points)
 

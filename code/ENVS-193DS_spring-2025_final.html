@@ -209,11 +209,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 1985  Feb               13.2
-2 1989  Apr               13.9
-3 2006  Nov               16.2
-4 2005  Jul               15.5
-5 2020  Apr               14.3</code></pre>
+1 1992  Jun               15.4
+2 1998  Feb               15.4
+3 1993  Jan               14.1
+4 1997  Oct               19.0
+5 2014  May               14.6</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sst_clean) <span class="co">#showing structure of the code </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -277,16 +277,60 @@ window.Quarto = {
 <section id="b.-purpose-of-study-2-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-purpose-of-study-2-points">b. Purpose of study (2 points)</h4>
 <p>The authors compare nest box occupancy between 3 species: Swift Parrots, Common Starlings, and Tree Martins. In 1-2 sentences, explain the main difference between Swift Parrots and the other two species in the context of this study.</p>
+<p><strong>The Swift Parrots are selective about where they nest, and who the nest boxes are intended for. The common starlings and tree matrins are the competition for the nest boxes. </strong></p>
 </section>
 <section id="c.-difference-in-seasons-2-points" class="level4">
 <h4 class="anchored" data-anchor-id="c.-difference-in-seasons-2-points">c.&nbsp;Difference in “seasons” (2 points)</h4>
 <p>The authors compare two years (that they refer to as “seasons”). In 1-2 sentences, define what those years/seasons are, and explain how they differ in the context of this study.</p>
+<p><strong>The nest boxes were monitored during the summer breeding seasons of the swift parrots in 2016 and 2019.</strong></p>
 </section>
 <section id="d.-table-of-models-10-points" class="level4">
 <h4 class="anchored" data-anchor-id="d.-table-of-models-10-points">d.&nbsp;Table of models (10 points)</h4>
 <p>Make a table of all the models you will need to run. You will run 4 models: a null model, a saturated model, and two other models with different combinations of predictors.</p>
 <p>Stuck on how to create a table? See workshop 8 for an example.</p>
 <p>Your table should have 4 columns: (1) model number, (2) season, (3) distance to forest edge, and (4) model description.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 11%">
+<col style="width: 37%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Model number</th>
+<th style="text-align: center;">season</th>
+<th style="text-align: center;">distance to forest edge</th>
+<th style="text-align: center;">model description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">null model (no predictors)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">saturated model (all predictors)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">year predicts Swift Parrot nest box occupancy</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">distance to forest edge predicts swift parrot nest box occupancy</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="e.-run-the-models-8-points" class="level4">
 <h4 class="anchored" data-anchor-id="e.-run-the-models-8-points">e. Run the models (8 points)</h4>
