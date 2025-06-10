@@ -154,18 +154,42 @@ Your table should have 4 columns: (1) model number, (2) season, (3) distance to 
 
 ```{r}
 #| include: FALSE
-nest_boxes_clean <- subset(nest_boxes, sp == 1) |> 
-  clean_names() 
-view(nest_boxes_clean)
+nest_boxes_clean <- nest_boxes |> 
+  clean_names() |> 
+  mutate(box_occupant = "swift_parrot", 
+         edge_distance = as_factor(edge_distance), 
+         season = as_factor(season)) |> 
+  select(box_occupant, edge_distance, season, sp)
+str(nest_boxes_clean)
 ```
 
+
 Write your code to run all your models. Do not display any output.
+```{r}
+#| output: FALSE
+model0 <- glm(sp ~ 1, # formula null model
+             data = nest_boxes_clean,  # data frame
+             family = "binomial") #binomial distribution 
+model1 <- glm(sp ~ edge_distance + season, # formula saturated model
+             data = nest_boxes_clean,  # data frame 
+              family = "binomial") #binomial distribution 
+model2 <- glm(sp ~ edge_distance, # formula edge distance as predictor
+             data = nest_boxes_clean,  # data frame 
+            family = "binomial") #binomial distribution 
+model3 <- glm(sp ~ season, # fromula season as predictor 
+             data = nest_boxes_clean, # data frame 
+              family = "binomial") #binomial distribution 
+```
+
 
 #### f. Check the diagnostics (6 points)
 
 Check your diagnostics for all models using simulated residuals from the `DHARMa` package.  
 
 Display the diagnostic plots for each model.
+```{r}
+
+```
 
 #### g. Select the best model (6 points) 
 
