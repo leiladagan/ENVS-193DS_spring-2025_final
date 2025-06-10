@@ -203,7 +203,7 @@ AICc(model1,
 ```
 In text, write what the best model was (i.e. "The best model as determined by Akaike's Information Criterion (AIC)...").  
 
-**The best model that predicts swift parrot nest box occupancy as determined by Akaike's Information Criterion (AIC) includes season. **
+**The best model that predicts swift parrot nest box occupancy as determined by Akaike's Information Criterion (AIC) includes both season and distance from forest edge. **
 
 Use the predictors and the response variable to describe the model, not the model number that you assigned.
 
@@ -227,23 +227,34 @@ ggplot() +
                  y = sp), 
              size = 3, # point size 
              alpha = 0.4, # point transparency 
-             color = "darkgreen") + 
+             color = "black") + 
   geom_ribbon(data = mod_pred, # model predictions on the plot 
                aes(x = x, 
                   y = predicted, 
                   ymin = conf.low, 
                   ymax = conf.high, 
-                  fill = group, 
-                  alpha = 0.4)) + 
+                  fill = group), 
+              alpha = 0.8) + 
   geom_line(data = mod_pred, 
             inherit.aes = FALSE,
             aes(x = x, 
                   y = predicted, 
-                color = group, 
-                linewidth = 1.2)) + 
+                color = group)) + 
+  # labels 
+labs(x = "Edge Distance", 
+     y = "Presence of Swift Parrot", 
+     color = "season", 
+     fill = "season", 
+     title = "Swift Parrot presence by distance from forest edge and season ") + 
   # y axis formatting 
   scale_y_continuous(limits = c(0,1), 
-                     breaks = c(0,1))
+                     breaks = c(0,1)) + 
+  # coloring the ribbons 
+  scale_color_manual(values = c("2016" = "purple", "2019" = "blue")) + 
+scale_fill_manual(values = c("2016" = "pink", "2019" = "lightblue")) + 
+  theme(panel.grid = element_blank(), 
+        panel.background = element_blank(), 
+        panel.border = element_rect(color = "black", fill = NA))
 ```
 
 #### i. Write a caption for your figure. (7 points)
