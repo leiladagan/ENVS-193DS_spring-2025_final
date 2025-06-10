@@ -20,6 +20,7 @@ library(MuMIn)
 library(lubridate)
 library(DHARMa)
 library(ggeffects)
+library(knitr)
 my_data <- read_csv(here("data", "my_data.csv"))
 sst <- read_csv(here("data", "SST_update2023.csv"))
 nest_boxes <- read_csv(here("data","occdist.csv"))
@@ -156,7 +157,8 @@ Your table should have 4 columns: (1) model number, (2) season, (3) distance to 
 ```{r}
 #| include: FALSE
 nest_boxes_clean <- nest_boxes |> 
-  clean_names()
+  clean_names() |> 
+ mutate(season = as_factor(season))
 ```
 
 
@@ -203,7 +205,7 @@ AICc(model1,
 ```
 In text, write what the best model was (i.e. "The best model as determined by Akaike's Information Criterion (AIC)...").  
 
-**The best model that predicts swift parrot nest box occupancy as determined by Akaike's Information Criterion (AIC) includes both season and distance from forest edge. (include stats)**
+**The best model that predicts swift parrot nest box occupancy as determined by Akaike's Information Criterion (AIC) includes both season and distance from forest edge.**
 
 Use the predictors and the response variable to describe the model, not the model number that you assigned.
 
@@ -229,10 +231,10 @@ ggplot() +
              alpha = 0.4, # point transparency 
              color = "black") + 
   geom_ribbon(data = mod_pred, # model predictions on the plot 
-               aes(x = x, 
-                  y = predicted, 
-                  ymin = conf.low, 
-                  ymax = conf.high, 
+               aes(x = x, # model prediction x axis 
+                  y = predicted, # model prediction y axis 
+                  ymin = conf.low, # lower end of 95% confidence interval
+                  ymax = conf.high, # higher end of the 95% confidence interval 
                   fill = group), 
               alpha = 0.8) + 
   geom_line(data = mod_pred, 
@@ -245,7 +247,7 @@ labs(x = "Edge Distance",
      y = "Presence of Swift Parrot", 
      color = "season", 
      fill = "season", 
-     title = "Swift Parrot presence by distance from forest edge and season ") + 
+     title = "Swift Parrot presence probability by distance from forest edge and season ") + 
   # y axis formatting 
   scale_y_continuous(limits = c(0,1), 
                      breaks = c(0,1)) + 
@@ -262,12 +264,38 @@ scale_fill_manual(values = c("2016" = "pink", "2019" = "lightblue")) +
 #### i. Write a caption for your figure. (7 points)
 
 Include a figure number, title, description of the figure, and data citation.
-**Fig 2. **
+
+**Fig 2. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.**
+
+**Data from  Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb**
+
 #### j. Calculate model predictions (4 points)
 
 Calculate the predicted probabilities of Swift Parrot nest box occupancy with 95% at 0 m from forest edge and 900 m from forest edge for each level in `season`.  
 
 Show and annotate all code. Display the output.
+```{r}
+# Generate predictions across edge_distance and season
+mod_preds <- ggpredict(model1,
+                            terms = c("edge_distance [0:1072 by=1]", "season")) |> 
+  rename(edge_distance = x,
+         season = group)
+
+# Filter for edge_distance == 500 and season == 2016
+pred_2016_500 <- mod_preds |> 
+  filter(edge_distance == 500, season == "2016")
+# filter for edge_distane == 500 and season == 2019
+pred_2019_500 <- mod_preds |> 
+  filter(edge_distance == 500, season == "2019")
+kable(pred_2016_500, caption = "Predicted Probability for swift parrot nest box occupancy in 2016 at 500m")
+kable(pred_2019_500, caption = "Predicted Probability swift parrot nest box occupancy in 2019 at 500m")
+```
+
+```{r}
+summary(model1)
+str(model1)
+names(mod_preds)
+```
 
 #### k. Interpret your results (16 points)
 

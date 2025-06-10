@@ -160,9 +160,10 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"SST_update2023.csv"</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"occdist.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"SST_update2023.csv"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>nest_boxes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"occdist.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-1.-research-writing-36-points" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1.-research-writing-36-points">Problem 1. Research writing (36 points)</h2>
@@ -210,11 +211,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 1995  Jan               13.9
-2 1998  Mar               14.8
-3 2016  Mar               14.8
-4 1999  Jul               16.6
-5 1995  Feb               14.5</code></pre>
+1 2012  Oct               18.3
+2 1984  Nov               15.7
+3 1992  Mar               15.3
+4 1983  Aug               19.5
+5 1994  Oct               16.9</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sst_clean) <span class="co">#showing structure of the code </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -409,7 +410,7 @@ model0  1 238.8318</code></pre>
 </div>
 </div>
 <p>In text, write what the best model was (i.e.&nbsp;“The best model as determined by Akaike’s Information Criterion (AIC)…”).</p>
-<p><strong>The best model that predicts swift parrot nest box occupancy as determined by Akaike’s Information Criterion (AIC) includes both season and distance from forest edge. </strong></p>
+<p><strong>The best model that predicts swift parrot nest box occupancy as determined by Akaike’s Information Criterion (AIC) includes both season and distance from forest edge.</strong></p>
 <p>Use the predictors and the response variable to describe the model, not the model number that you assigned.</p>
 </section>
 <section id="h.-visualize-the-model-predictions-24-points" class="level4">
@@ -433,10 +434,10 @@ model0  1 238.8318</code></pre>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="co"># point transparency </span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> mod_pred, <span class="co"># model predictions on the plot </span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> x, </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> predicted, </span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymin =</span> conf.low, </span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymax =</span> conf.high, </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="co"># model prediction x axis </span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> predicted, <span class="co"># model prediction y axis </span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymin =</span> conf.low, <span class="co"># lower end of 95% confidence interval</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymax =</span> conf.high, <span class="co"># higher end of the 95% confidence interval </span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> group), </span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> mod_pred, </span>
@@ -449,7 +450,7 @@ model0  1 238.8318</code></pre>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Presence of Swift Parrot"</span>, </span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">color =</span> <span class="st">"season"</span>, </span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"season"</span>, </span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Swift Parrot presence by distance from forest edge and season "</span>) <span class="sc">+</span> </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Swift Parrot presence probability by distance from forest edge and season "</span>) <span class="sc">+</span> </span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y axis formatting </span></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), </span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
@@ -473,11 +474,224 @@ model0  1 238.8318</code></pre>
 <section id="i.-write-a-caption-for-your-figure.-7-points" class="level4">
 <h4 class="anchored" data-anchor-id="i.-write-a-caption-for-your-figure.-7-points">i. Write a caption for your figure. (7 points)</h4>
 <p>Include a figure number, title, description of the figure, and data citation.</p>
+<p><strong>Fig 2. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.</strong></p>
+<p><strong>Data from Stojanovic, Dejan et al.&nbsp;(2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb</strong></p>
 </section>
 <section id="j.-calculate-model-predictions-4-points" class="level4">
 <h4 class="anchored" data-anchor-id="j.-calculate-model-predictions-4-points">j. Calculate model predictions (4 points)</h4>
 <p>Calculate the predicted probabilities of Swift Parrot nest box occupancy with 95% at 0 m from forest edge and 900 m from forest edge for each level in <code>season</code>.</p>
 <p>Show and annotate all code. Display the output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate predictions across edge_distance and season</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mod_preds <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(model1,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"edge_distance [0:1072 by=1]"</span>, <span class="st">"season"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">edge_distance =</span> x,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">season =</span> group)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for edge_distance == 500 and season == 2016</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>pred_2016_500 <span class="ot">&lt;-</span> mod_preds <span class="sc">|&gt;</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edge_distance <span class="sc">==</span> <span class="dv">500</span>, season <span class="sc">==</span> <span class="st">"2016"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for edge_distane == 500 and season == 2019</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>pred_2019_500 <span class="ot">&lt;-</span> mod_preds <span class="sc">|&gt;</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edge_distance <span class="sc">==</span> <span class="dv">500</span>, season <span class="sc">==</span> <span class="st">"2019"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pred_2016_500, <span class="at">caption =</span> <span class="st">"Predicted Probability for swift parrot nest box occupancy in 2016 at 500m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Predicted Probability for swift parrot nest box occupancy in 2016 at 500m</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">edge_distance</th>
+<th style="text-align: right;">predicted</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+<th style="text-align: left;">season</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.2466424</td>
+<td style="text-align: right;">0.2373142</td>
+<td style="text-align: right;">0.1705509</td>
+<td style="text-align: right;">0.3426576</td>
+<td style="text-align: left;">2016</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pred_2019_500, <span class="at">caption =</span> <span class="st">"Predicted Probability swift parrot nest box occupancy in 2019 at 500m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Predicted Probability swift parrot nest box occupancy in 2019 at 500m</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">edge_distance</th>
+<th style="text-align: right;">predicted</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+<th style="text-align: left;">season</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.1305847</td>
+<td style="text-align: right;">0.2728766</td>
+<td style="text-align: right;">0.0808668</td>
+<td style="text-align: right;">0.2040826</td>
+<td style="text-align: left;">2019</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = sp ~ edge_distance + season, family = "binomial", 
+    data = nest_boxes_clean)
+
+Coefficients:
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)   -0.0774902  0.3293209  -0.235 0.813974    
+edge_distance -0.0020782  0.0006226  -3.338 0.000843 ***
+season2019    -0.7791985  0.3390296  -2.298 0.021544 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 236.81  on 226  degrees of freedom
+Residual deviance: 220.21  on 224  degrees of freedom
+AIC: 226.21
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 30
+ $ coefficients     : Named num [1:3] -0.07749 -0.00208 -0.7792
+  ..- attr(*, "names")= chr [1:3] "(Intercept)" "edge_distance" "season2019"
+ $ residuals        : Named num [1:227] -1.51 -1.86 -1.78 -1.71 -1.67 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ fitted.values    : Named num [1:227] 0.338 0.463 0.437 0.415 0.403 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ effects          : Named num [1:227] 6.982 -3.099 -2.298 -0.682 -0.668 ...
+  ..- attr(*, "names")= chr [1:227] "(Intercept)" "edge_distance" "season2019" "" ...
+ $ R                : num [1:3, 1:3] -5.97 0 0 -2128.83 1616.6 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:3] "(Intercept)" "edge_distance" "season2019"
+  .. ..$ : chr [1:3] "(Intercept)" "edge_distance" "season2019"
+ $ rank             : int 3
+ $ qr               :List of 5
+  ..$ qr   : num [1:227, 1:3] -5.9661 0.0836 0.0831 0.0826 0.0822 ...
+  .. ..- attr(*, "dimnames")=List of 2
+  .. .. ..$ : chr [1:227] "1" "2" "3" "4" ...
+  .. .. ..$ : chr [1:3] "(Intercept)" "edge_distance" "season2019"
+  ..$ rank : int 3
+  ..$ qraux: num [1:3] 1.08 1.1 1.07
+  ..$ pivot: int [1:3] 1 2 3
+  ..$ tol  : num 1e-11
+  ..- attr(*, "class")= chr "qr"
+ $ family           :List of 13
+  ..$ family    : chr "binomial"
+  ..$ link      : chr "logit"
+  ..$ linkfun   :function (mu)  
+  ..$ linkinv   :function (eta)  
+  ..$ variance  :function (mu)  
+  ..$ dev.resids:function (y, mu, wt)  
+  ..$ aic       :function (y, n, mu, wt, dev)  
+  ..$ mu.eta    :function (eta)  
+  ..$ initialize: language {     if (NCOL(y) == 1) { ...
+  ..$ validmu   :function (mu)  
+  ..$ valideta  :function (eta)  
+  ..$ simulate  :function (object, nsim)  
+  ..$ dispersion: num 1
+  ..- attr(*, "class")= chr "family"
+ $ linear.predictors: Named num [1:227] -0.674 -0.15 -0.252 -0.344 -0.393 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ deviance         : num 220
+ $ aic              : num 226
+ $ null.deviance    : num 237
+ $ iter             : int 4
+ $ weights          : Named num [1:227] 0.224 0.249 0.246 0.243 0.241 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ prior.weights    : Named num [1:227] 1 1 1 1 1 1 1 1 1 1 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ df.residual      : int 224
+ $ df.null          : int 226
+ $ y                : Named num [1:227] 0 0 0 0 0 0 0 0 0 0 ...
+  ..- attr(*, "names")= chr [1:227] "1" "2" "3" "4" ...
+ $ converged        : logi TRUE
+ $ boundary         : logi FALSE
+ $ model            :'data.frame':  227 obs. of  3 variables:
+  ..$ sp           : num [1:227] 0 0 0 0 0 0 0 0 0 0 ...
+  ..$ edge_distance: num [1:227] 287 35 84 128 152 92 51 222 160 145 ...
+  ..$ season       : Factor w/ 2 levels "2016","2019": 1 1 1 1 1 1 1 2 2 2 ...
+  ..- attr(*, "terms")=Classes 'terms', 'formula'  language sp ~ edge_distance + season
+  .. .. ..- attr(*, "variables")= language list(sp, edge_distance, season)
+  .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+  .. .. .. ..- attr(*, "dimnames")=List of 2
+  .. .. .. .. ..$ : chr [1:3] "sp" "edge_distance" "season"
+  .. .. .. .. ..$ : chr [1:2] "edge_distance" "season"
+  .. .. ..- attr(*, "term.labels")= chr [1:2] "edge_distance" "season"
+  .. .. ..- attr(*, "order")= int [1:2] 1 1
+  .. .. ..- attr(*, "intercept")= int 1
+  .. .. ..- attr(*, "response")= int 1
+  .. .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+  .. .. ..- attr(*, "predvars")= language list(sp, edge_distance, season)
+  .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "factor"
+  .. .. .. ..- attr(*, "names")= chr [1:3] "sp" "edge_distance" "season"
+ $ call             : language glm(formula = sp ~ edge_distance + season, family = "binomial", data = nest_boxes_clean)
+ $ formula          :Class 'formula'  language sp ~ edge_distance + season
+  .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+ $ terms            :Classes 'terms', 'formula'  language sp ~ edge_distance + season
+  .. ..- attr(*, "variables")= language list(sp, edge_distance, season)
+  .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+  .. .. ..- attr(*, "dimnames")=List of 2
+  .. .. .. ..$ : chr [1:3] "sp" "edge_distance" "season"
+  .. .. .. ..$ : chr [1:2] "edge_distance" "season"
+  .. ..- attr(*, "term.labels")= chr [1:2] "edge_distance" "season"
+  .. ..- attr(*, "order")= int [1:2] 1 1
+  .. ..- attr(*, "intercept")= int 1
+  .. ..- attr(*, "response")= int 1
+  .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+  .. ..- attr(*, "predvars")= language list(sp, edge_distance, season)
+  .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "factor"
+  .. .. ..- attr(*, "names")= chr [1:3] "sp" "edge_distance" "season"
+ $ data             : tibble [227 × 10] (S3: tbl_df/tbl/data.frame)
+  ..$ box          : chr [1:227] "boxrh00" "boxrh49" "boxrh55" "boxrh56" ...
+  ..$ box_occupant : chr [1:227] "common starling" "common starling" "common starling" "common starling" ...
+  ..$ edge_distance: num [1:227] 287 35 84 128 152 92 51 222 160 145 ...
+  ..$ season       : Factor w/ 2 levels "2016","2019": 1 1 1 1 1 1 1 2 2 2 ...
+  ..$ event_id     : chr [1:227] "boxrh002016" "boxrh492016" "boxrh552016" "boxrh562016" ...
+  ..$ repeated_use : chr [1:227] "no" "no" "no" "no" ...
+  ..$ sp           : num [1:227] 0 0 0 0 0 0 0 0 0 0 ...
+  ..$ cs           : num [1:227] 1 1 1 1 1 1 1 1 1 1 ...
+  ..$ e            : num [1:227] 0 0 0 0 0 0 0 0 0 0 ...
+  ..$ tm           : num [1:227] 0 0 0 0 0 0 0 0 0 0 ...
+ $ offset           : NULL
+ $ control          :List of 3
+  ..$ epsilon: num 1e-08
+  ..$ maxit  : num 25
+  ..$ trace  : logi FALSE
+ $ method           : chr "glm.fit"
+ $ contrasts        :List of 1
+  ..$ season: chr "contr.treatment"
+ $ xlevels          :List of 1
+  ..$ season: chr [1:2] "2016" "2019"
+ - attr(*, "class")= chr [1:2] "glm" "lm"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "edge_distance" "predicted"     "std.error"     "conf.low"     
+[5] "conf.high"     "season"       </code></pre>
+</div>
+</div>
 </section>
 <section id="k.-interpret-your-results-16-points" class="level4">
 <h4 class="anchored" data-anchor-id="k.-interpret-your-results-16-points">k. Interpret your results (16 points)</h4>
@@ -514,36 +728,36 @@ model0  1 238.8318</code></pre>
 <section id="b.-sharing-your-affective-visualization-25-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-sharing-your-affective-visualization-25-points">b. Sharing your affective visualization (25 points)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>,</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">y=</span> <span class="st">`</span><span class="at">shower length (min)</span><span class="st">`</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>)) <span class="sc">+</span> <span class="co"># outlining my plot, data, and variables</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>), <span class="co"># jittering poitns </span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="at">fun =</span> mean, <span class="co"># show mean</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="at">geom =</span> <span class="st">"point"</span>, <span class="co"># add point</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="at">size =</span> <span class="dv">2</span>,<span class="co"># change size of point</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"darkblue"</span> <span class="co"># make the color black</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Work Day (yes or no)"</span>, <span class="co"># labels</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"shower length (min)"</span>,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Shower Length by Work Day/Non Work Day"</span>) <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making points look like water droplets </span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"N"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>, <span class="st">"Y"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>)) <span class="sc">+</span> </span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co">#  removing panel grids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_data, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="at">y=</span> <span class="st">`</span><span class="at">shower length (min)</span><span class="st">`</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">`</span><span class="at">Work Day</span><span class="st">`</span>)) <span class="sc">+</span> <span class="co"># outlining my plot, data, and variables</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_jitter</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>), <span class="co"># jittering poitns </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="at">fun =</span> mean, <span class="co"># show mean</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="at">geom =</span> <span class="st">"point"</span>, <span class="co"># add point</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="at">size =</span> <span class="dv">2</span>,<span class="co"># change size of point</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"darkblue"</span> <span class="co"># make the color black</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Work Day (yes or no)"</span>, <span class="co"># labels</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"shower length (min)"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Shower Length by Work Day/Non Work Day"</span>) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making points look like water droplets </span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"N"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>, <span class="st">"Y"</span> <span class="ot">=</span> <span class="st">"turquoise"</span>)) <span class="sc">+</span> </span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co">#  removing panel grids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> <span class="co"># starting with my personal data frame </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co"># simplifying my column names </span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  my_data_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_data_clean <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> <span class="co"># starting with my personal data frame </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co"># simplifying my column names </span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  my_data_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 7
    date    shower_length_min work_day weather_degrees_f work_type gym_y_n time  
@@ -562,8 +776,8 @@ model0  1 238.8318</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(shower_length_min <span class="sc">~</span> work_day, <span class="co"># formula </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean) <span class="co"># data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(shower_length_min <span class="sc">~</span> work_day, <span class="co"># formula </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean) <span class="co"># data frame </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -580,9 +794,9 @@ ratio of variances
 </div>
 <p>appears my samples have equal variances, can run student’s t test.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(shower_length_min <span class="sc">~</span> work_day,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(shower_length_min <span class="sc">~</span> work_day,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -599,17 +813,17 @@ mean in group N mean in group Y
 </div>
 <p>I did not find a significant difference in the mean shower length time between work days and non work days using a Student’s t-test t(31) = -0.63, p = 0.53, ⍺ = 0.05). So, I feel comfortable adding the histogram once again to my final visualization.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> shower_length_min)) <span class="sc">+</span> <span class="co">#setting parameters </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"turquoise"</span>, <span class="co"># making my histogram </span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co"># log2(31) + 1 = 5.96, rounded up to 6 bins </span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme </span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shower length in minutes"</span>, <span class="co"># including x axis title </span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span>  <span class="co"># making y axis title blank </span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># removing gridlines </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> shower_length_min)) <span class="sc">+</span> <span class="co">#setting parameters </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"turquoise"</span>, <span class="co"># making my histogram </span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co"># log2(31) + 1 = 5.96, rounded up to 6 bins </span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># minimizing theme </span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shower length in minutes"</span>, <span class="co"># including x axis title </span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span>  <span class="co"># making y axis title blank </span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># removing gridlines </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ENVS-193DS_spring-2025_final_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
