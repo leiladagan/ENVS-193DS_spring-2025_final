@@ -38,5 +38,5 @@ File structure:
 
 ### Rendered output
 
-The rendered key is [here](https://an-bui.github.io/ENVS-193DS_workshop-08/code/workshop-08_code_KEY.html).  
+The rendered key is [here](https://leiladagan.github.io/ENVS-193DS_spring-2025_final/code/ENVS-193DS_spring-2025_final.html).  
 
