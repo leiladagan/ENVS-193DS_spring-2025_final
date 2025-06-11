@@ -7,7 +7,7 @@ This repository is for my final exam for my ENVS-193DS class.
 
 The data for my personal project was collected and stored on excel. I used the weather app to track the temperature, clock app to track time of day, stopwatch for shower length, and my planner to track work/gym day, type of work.
 
-The data referenced in problem 1 in is: Saleh, Dina and Joseph Domagalski. 2021. “Concentrations, Loads, and Associated Trends of Nutrients Entering the Sacramento–San Joaquin Delta, California.” *San Francisco Estuary and Watershed Science*. DOI: 10.15447/sfews.2021v19iss4art6.
+The data referenced in problem 1 is: Saleh, Dina and Joseph Domagalski. 2021. “Concentrations, Loads, and Associated Trends of Nutrients Entering the Sacramento–San Joaquin Delta, California.” *San Francisco Estuary and Watershed Science*. DOI: 10.15447/sfews.2021v19iss4art6.
 
 The data referenced in problem 2 is: Kui, L. 2024. Daily sea surface temperature in Santa Barbara channel between 1982 and 2023 *ver 3. Environmental Data Initiative*. https://doi.org/10.6073/pasta/e930954949b2635928b8be6824630f84. 
 
@@ -38,5 +38,5 @@ File structure:
 
 ### Rendered output
 
-The rendered key is [here](https://leiladagan.github.io/ENVS-193DS_spring-2025_final/code/ENVS-193DS_spring-2025_final.html).  
+The rendered final exam is [here](https://leiladagan.github.io/ENVS-193DS_spring-2025_final/code/ENVS-193DS_spring-2025_final.html).  
 
