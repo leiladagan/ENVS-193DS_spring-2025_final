@@ -265,7 +265,7 @@ scale_fill_manual(values = c("2016" = "pink", "2019" = "lightblue")) +
 
 Include a figure number, title, description of the figure, and data citation.
 
-**Fig 2. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.**
+**Fig 1. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.**
 
 **Data from  Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb**
 
@@ -297,6 +297,8 @@ Write 3-5 sentences summarizing what you found, making references to the figure 
 - the relationship between distance from forest edge and probability of occupancy
 - the biology behind the trends you found - what explains the relationship between distance from forest edge and probability of Swift Parrot nest box occupancy?
 
+**A closer proximity to the forest edge tends to decrease the probability of the selective Swift Parrot choosing that nest box, and more Swift Parrots were observed utilizing the nest boxes in 2016 than in 2019 (as visualized in Figure 1). The probability of seeing a Swift parrot occupying a nest box 0 m from the forest edge in 2016 was 0.48 (95% CI [0.33, 0.64], and 0.29 (95% CI [0.18,0.44] in 2019. The probability of seeing a Swift parrot occupying a nest box 900 m from the forest edge in 2016 was 0.12 (95% CI[0.06, 0.24]), and 0.06 (95% CI[0.03,0.13]) in 2019. **
+
 ## Problem 4. Affective and exploratory visualizations (45 points)
 
 #### a. Comparing visualizations (20 points)
@@ -305,19 +307,19 @@ Compare and contrast your affective visualization from Homework 3 and the explor
 
 - How are the visualizations different from each other in the way you have represented your data?
 
-The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length. 
+**The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length.** 
 
 - What similarities do you see between all your visualizations?
 
-All of my visualizations for my personal data are plotting shower length (min), because my behavior with showering was the main focus of my project. 
+**All of my visualizations for my personal data are plotting shower length (min), because my behavior with showering was the main focus of my project.** 
 
 - What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
 
-In Homework 2, I had barely any data points, so my mean shower length for work days and non work days were clearly different. However, for homework 3, they appeared similar. So, I just decided to do a histogram for my visualization as it would be easier to incorporate into an art piece. 
+**In Homework 2, I had barely any data points, so my mean shower length for work days and non work days were clearly different. However, for homework 3, they appeared similar. So, I just decided to do a histogram for my visualization as it would be easier to incorporate into an art piece.** 
 
 - What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
 
-I was told to make the graph larger and more of a central focus, as the eye was drawn to my artwork rather than the actual data. I am definitely going to incorporate this into my final visualization. Also personally, I want to represent both the means with work days vs non work days (because this was my initial central question), as well as a histogram of all of my showers. 
+**I was told to make the graph larger and more of a central focus, as the eye was drawn to my artwork rather than the actual data. I am definitely going to incorporate this into my final visualization. Also personally, I want to represent both the means with work days vs non work days (because this was my initial central question), as well as a histogram of all of my showers.**
 
 #### b. Sharing your affective visualization (25 points)
 ```{r}
@@ -351,14 +353,16 @@ my_data_clean <- my_data |> # starting with my personal data frame
 var.test(shower_length_min ~ work_day, # formula 
          data = my_data_clean) # data frame 
 ```
-appears my samples have equal variances, can run student's t test. 
+**appears my samples have equal variances, can run student's t test.** 
 ```{r}
 t.test(shower_length_min ~ work_day,
          data = my_data_clean, 
        var.equal = TRUE)
 ```
+
 I did not find a significant difference in the mean shower length time between work days and non work days using a Student's t-test t(31) =
--0.63, p = 0.53, ⍺ = 0.05). So, I feel comfortable adding the histogram once again to my final visualization. 
+-0.63, p = 0.53, ⍺ = 0.05). So, I feel comfortable adding the histogram once again to my final visualization.
+
 ```{r}
 ggplot(data = my_data_clean, aes(x = shower_length_min)) + #setting parameters 
   geom_histogram(fill = "turquoise", # making my histogram 
@@ -369,7 +373,8 @@ ggplot(data = my_data_clean, aes(x = shower_length_min)) + #setting parameters
  theme(panel.grid = element_blank()) # removing gridlines 
 ```
 
-Here is my final visualization! 
+**Here is my final visualization!** 
+
 
 ![](shower_viz.jpg)
 

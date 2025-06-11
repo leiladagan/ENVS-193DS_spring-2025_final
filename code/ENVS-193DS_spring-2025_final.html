@@ -211,11 +211,11 @@ window.Quarto = {
 <pre><code># A tibble: 5 × 3
   year  month mean_monthly_sst
   &lt;fct&gt; &lt;ord&gt;            &lt;dbl&gt;
-1 1983  Feb               15.6
-2 2022  Apr               13.3
-3 1987  Mar               13.5
-4 2008  Jul               16.7
-5 1993  Feb               14.4</code></pre>
+1 1992  Sep               17.7
+2 1982  Nov               17.1
+3 2015  Aug               19.3
+4 2001  Dec               13.2
+5 1983  Apr               13.7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sst_clean) <span class="co">#showing structure of the code </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -474,7 +474,7 @@ model0  1 238.8318</code></pre>
 <section id="i.-write-a-caption-for-your-figure.-7-points" class="level4">
 <h4 class="anchored" data-anchor-id="i.-write-a-caption-for-your-figure.-7-points">i. Write a caption for your figure. (7 points)</h4>
 <p>Include a figure number, title, description of the figure, and data citation.</p>
-<p><strong>Fig 2. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.</strong></p>
+<p><strong>Fig 1. Swift parrot presence probability by distance from forest edge and season. Swift parrot decreases as distance to forest edge increases, and a decline in swift parrot presence from 2016 to 2019. Points represent presence/absence of swift parrots in nest boxes (1= present, 0 = absent) Lines and ribbons represent model predictions of the probability of Swift Parrot presence with a 95% confidence interval. Purple/pink represents observations taken in 2016 and blue represents 2019.</strong></p>
 <p><strong>Data from Stojanovic, Dejan et al.&nbsp;(2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb</strong></p>
 </section>
 <section id="j.-calculate-model-predictions-4-points" class="level4">
@@ -552,6 +552,7 @@ model0  1 238.8318</code></pre>
 <li>the relationship between distance from forest edge and probability of occupancy</li>
 <li>the biology behind the trends you found - what explains the relationship between distance from forest edge and probability of Swift Parrot nest box occupancy?</li>
 </ul>
+<p><strong>A closer proximity to the forest edge tends to decrease the probability of the selective Swift Parrot choosing that nest box, and more Swift Parrots were observed utilizing the nest boxes in 2016 than in 2019 (as visualized in Figure 1). The probability of seeing a Swift parrot occupying a nest box 0 m from the forest edge in 2016 was 0.48 (95% CI [0.33, 0.64], and 0.29 (95% CI [0.18,0.44] in 2019. The probability of seeing a Swift parrot occupying a nest box 900 m from the forest edge in 2016 was 0.12 (95% CI[0.06, 0.24]), and 0.06 (95% CI[0.03,0.13]) in 2019. </strong></p>
 </section>
 </section>
 <section id="problem-4.-affective-and-exploratory-visualizations-45-points" class="level2">
@@ -562,19 +563,19 @@ model0  1 238.8318</code></pre>
 <ul>
 <li>How are the visualizations different from each other in the way you have represented your data?</li>
 </ul>
-<p>The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length.</p>
+<p><strong>The visualizations had different shapes. In Homework 2, I did a boxplot, and in Homework 3, I did a histogram and a jitterplot. The boxplot was not the correct visualization as I am trying to better understand my mean shower length.</strong></p>
 <ul>
 <li>What similarities do you see between all your visualizations?</li>
 </ul>
-<p>All of my visualizations for my personal data are plotting shower length (min), because my behavior with showering was the main focus of my project.</p>
+<p><strong>All of my visualizations for my personal data are plotting shower length (min), because my behavior with showering was the main focus of my project.</strong></p>
 <ul>
 <li>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?</li>
 </ul>
-<p>In Homework 2, I had barely any data points, so my mean shower length for work days and non work days were clearly different. However, for homework 3, they appeared similar. So, I just decided to do a histogram for my visualization as it would be easier to incorporate into an art piece.</p>
+<p><strong>In Homework 2, I had barely any data points, so my mean shower length for work days and non work days were clearly different. However, for homework 3, they appeared similar. So, I just decided to do a histogram for my visualization as it would be easier to incorporate into an art piece.</strong></p>
 <ul>
 <li>What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.</li>
 </ul>
-<p>I was told to make the graph larger and more of a central focus, as the eye was drawn to my artwork rather than the actual data. I am definitely going to incorporate this into my final visualization. Also personally, I want to represent both the means with work days vs non work days (because this was my initial central question), as well as a histogram of all of my showers.</p>
+<p><strong>I was told to make the graph larger and more of a central focus, as the eye was drawn to my artwork rather than the actual data. I am definitely going to incorporate this into my final visualization. Also personally, I want to represent both the means with work days vs non work days (because this was my initial central question), as well as a histogram of all of my showers.</strong></p>
 </section>
 <section id="b.-sharing-your-affective-visualization-25-points" class="level4">
 <h4 class="anchored" data-anchor-id="b.-sharing-your-affective-visualization-25-points">b. Sharing your affective visualization (25 points)</h4>
@@ -643,7 +644,7 @@ ratio of variances
          0.7782629 </code></pre>
 </div>
 </div>
-<p>appears my samples have equal variances, can run student’s t test.</p>
+<p><strong>appears my samples have equal variances, can run student’s t test.</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(shower_length_min <span class="sc">~</span> work_day,</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> my_data_clean, </span>
@@ -679,7 +680,7 @@ mean in group N mean in group Y
 </div>
 </div>
 </div>
-<p>Here is my final visualization!</p>
+<p><strong>Here is my final visualization!</strong></p>
 <p><img src="shower_viz.jpg" class="img-fluid"></p>
 <p>This is a component you will complete in workshop during week 10. <strong>We will be taking attendance that day. If you attend class and complete the activity, you will receive full credit for this section.</strong></p>
 </section>
